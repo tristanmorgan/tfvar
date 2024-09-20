@@ -17,3 +17,11 @@ import {
   id = "i-123545"
   to = aws_instance.b
 }
+
+removed {
+  from = aws_instance.c
+  lifecycle {
+    destroy = false
+  }
+}
+
