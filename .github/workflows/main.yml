@@ -34,8 +34,8 @@ jobs:
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          GO111MODULE=off go get github.com/mattn/goveralls
-          $(go env GOPATH)/bin/goveralls -coverprofile=profile.cov -service=github
+          go install github.com/mattn/goveralls@latest
+          goveralls -coverprofile=profile.cov -service=github
   lints:
     runs-on: ubuntu-latest
     steps:
