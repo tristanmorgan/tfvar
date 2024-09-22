@@ -1,6 +1,6 @@
 module github.com/shihanng/tfvar
 
-go 1.18
+go 1.23
 
 require (
 	github.com/cockroachdb/errors v1.7.3

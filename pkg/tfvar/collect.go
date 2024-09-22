@@ -1,7 +1,6 @@
 package tfvar
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -33,7 +32,7 @@ func LookupTFVarsFiles(dir string) []string {
 		files = append(files, dj)
 	}
 
-	if infos, err := ioutil.ReadDir(dir); err == nil {
+	if infos, err := os.ReadDir(dir); err == nil {
 		// "infos" is already sorted by name, so we just need to filter it here.
 		for _, info := range infos {
 			name := info.Name()
@@ -104,7 +103,7 @@ func CollectFromString(raw string, to map[string]UnparsedVariableValue) error {
 
 // CollectFromFile extracts the variable definitions from the given file.
 func CollectFromFile(filename string, to map[string]UnparsedVariableValue) error {
-	src, err := ioutil.ReadFile(filename)
+	src, err := os.ReadFile(filename)
 	if err != nil {
 		return errors.Errorf("tfvar: reading file '%s'", filename)
 	}
