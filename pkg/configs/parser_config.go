@@ -119,5 +119,8 @@ var configFileSchema = &hcl.BodySchema{
 		{
 			Type: "import",
 		},
+		{
+			Type: "removed",
+		},
 	},
 }
