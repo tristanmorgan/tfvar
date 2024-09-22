@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ["1.20", "1.19", "1.18"]
+        version: ["1.23", "1.22", "1.21"]
 
     steps:
       - name: Set up Go
@@ -30,12 +30,12 @@ jobs:
         run: make test
 
       - name: Send coverage
-        if: ${{ matrix.version == '1.20' }}
+        if: ${{ matrix.version == '1.23' }}
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          GO111MODULE=off go get github.com/mattn/goveralls
-          $(go env GOPATH)/bin/goveralls -coverprofile=profile.cov -service=github
+          go install github.com/mattn/goveralls@latest
+          goveralls -coverprofile=profile.cov -service=github
   lints:
     runs-on: ubuntu-latest
     steps:
@@ -47,5 +47,5 @@ jobs:
       - name: Set up golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.52.2
+          version: v1.61.0
           args: --timeout=3m
