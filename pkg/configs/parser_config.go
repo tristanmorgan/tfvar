@@ -59,6 +59,7 @@ func (p *Parser) loadConfigFile(path string, override bool) (*File, hcl.Diagnost
 		case "module":
 		case "resource":
 		case "data":
+		case "check":
 		case "moved":
 		case "import":
 		default:
@@ -112,6 +113,10 @@ var configFileSchema = &hcl.BodySchema{
 		{
 			Type:       "data",
 			LabelNames: []string{"type", "name"},
+		},
+		{
+			Type: "check",
+			LabelNames: []string{"name"},
 		},
 		{
 			Type: "moved",
