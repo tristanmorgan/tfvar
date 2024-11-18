@@ -25,3 +25,9 @@ removed {
   }
 }
 
+check "test" {
+  assert {
+    condition     = aws_instance.c.id == "i-12346578"
+    error_message = "missing instance id"
+  }
+}
